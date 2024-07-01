@@ -1,19 +1,19 @@
-from fastapi import FastAPI, HTTPException, Body
-from pydantic import BaseModel
-from pymongo import MongoClient
-from bson import ObjectId
+from fastapi import FastAPI, HTTPException, Body # type: ignore
+from pydantic import BaseModel # type: ignore
+from pymongo import MongoClient # type: ignore
+from bson import ObjectId # type: ignore
 from typing import List, Optional
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware # type: ignore
 
 app = FastAPI()
 
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this as per your requirements
+    allow_origins=["*"],  # Allow all origins for debugging; adjust as needed
     allow_credentials=True,
-    allow_methods=["GET", "POST", "DELETE"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
 )
 
 # Connect to MongoDB
@@ -61,5 +61,5 @@ async def delete_todo(todo_id: str):
     return {"message": "Todo deleted successfully"}
 
 if __name__ == "__main__":
-    import uvicorn
+    import uvicorn # type: ignore
     uvicorn.run(app, host="0.0.0.0", port=8000)
